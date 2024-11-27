@@ -20,6 +20,7 @@ class SocialiteController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
+            dd($user);
             $find_user = User::where('social_id', $user->id)->first();
             if($find_user) {
                 Auth::login($find_user);
