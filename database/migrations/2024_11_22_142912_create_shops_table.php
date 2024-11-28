@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('address');
             $table->string('category', 40)->nullable();
             $table->string('phone')->nullable();
-            //todo: don't forget to add default to image...
+            
+            // todo: don't forget to add default to image...
             $table->string('image', 300)->nullable();
             $table->timestamps();
         });

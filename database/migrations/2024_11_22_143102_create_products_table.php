@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('shop_id')->constrained('shops')->onDelete('cascade');
-            $table->string('name')->unique()->nullable();
+            $table->string('name')->unique();
             $table->decimal('price', 10, 2)->default(0.00);
             $table->integer('quantity')->default(1);
-            $table->string('description', 150)->nullable();
+            $table->string('description')->nullable();
+
             //todo: don't forget to make defaults for image...
             $table->string('image')->nullable();
-
             $table->timestamps();
         });
     }
