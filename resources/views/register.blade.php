@@ -1,3 +1,11 @@
+/*
+ !----------------------------------------------------
+ !
+ ! this file is just to test google service ...
+ !
+ !----------------------------------------------------
+*/
+
 <form action = "{{ route('user.register') }}" method = "POST">
     @csrf
     <input type = "text" name = "first_name" placeholder = "First Name"><br>
