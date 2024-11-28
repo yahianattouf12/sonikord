@@ -44,14 +44,16 @@ Route::controller(UserController::class)
 |--------------------------------------------------------------------------
 | Routes Handled For Shop
 |--------------------------------------------------------------------------
-|                |                    |             |
-|    GET         |    /shops/index    |    index    |    photos.index
-|    POST        |    /shops          |    store    |    photos.store
-|    GET         |    /shops/{shop}   |    show     |    photos.show
-|    PUT|PATCH   |    /shops/{shop}   |    update   |	 photos.update
-|    DELETE      |    /shops/{shop}   |    destroy  |    photos.destroy
+|              |                              |              |
+|   GET        |   /shops/index               |    index     |    photos.index
+|   POST       |   /shops                     |    store     |    photos.store
+|   GET        |   /shops/{shop}              |    show      |    photos.show
+|   PUT|PATCH  |   /shops/{shop}              |    update    |	  photos.update
+|   DELETE     |   /shops/{shop}              |    destroy   |    photos.destroy
+|   GET        |   /shops/{shop_id}/products  |    products  |    shops.products
 */
 Route::apiResource('shops', ShopController::class);
+Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->name('shops.products');
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +65,5 @@ Route::apiResource('shops', ShopController::class);
 |   GET         |    /products/{product}   |    show     |    photos.show
 |   PUT|PATCH   |    /products/{product}   |    update   |	  photos.update
 |   DELETE      |    /products/{product}   |    destroy  |    photos.destroy
-|   GET         |    /products/shop/{shop_id} | indexShopProducts | products.indexShopProducts
 */
 Route::apiResource('products', ProductController::class);
-Route::get('/products/shop/{shop_id}', [ProductController::class,'indexShopProducts'])->name('products.indexShopProducts');

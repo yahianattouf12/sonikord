@@ -47,4 +47,12 @@ class ShopController extends Controller
     {
         //
     }
+
+    public function products($shop_id)
+    {
+        $shop = Shop::findOrFail($shop_id);
+        $products = $shop->products;
+        
+        return response()->json(['products'=>$products], 200);
+    }
 }

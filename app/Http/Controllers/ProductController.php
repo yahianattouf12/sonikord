@@ -46,12 +46,4 @@ class ProductController extends Controller
     {
         //
     }
-
-    public function indexShopProducts($shop_id)
-    {
-        $shop = Shop::findOrFail($shop_id);
-        $prodcuts=$shop->products;
-        
-        return response()->json(['products'=>$prodcuts],200);
-    }
 }
