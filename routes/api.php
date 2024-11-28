@@ -8,13 +8,13 @@ use App\Http\Controllers\ProductController;
 
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 | Routes Handled For Authentication
-|--------------------------------------------------------------------------
-|
-|    POST   |    /user/login     |    login      |    user.login
-|    POST   |    /user/register  |    register   |    user.register
-|    POST   |    /user/logout    |    logout     |    user.logout
+|-------------------------------------------------------------------------------
+|          |                    |               |          
+|   POST   |    /user/login     |    login      |    user.login
+|   POST   |    /user/register  |    register   |    user.register
+|   POST   |    /user/logout    |    logout     |    user.logout
 */
 Route::controller(AuthController::class)
      ->prefix('user')
@@ -26,11 +26,11 @@ Route::controller(AuthController::class)
 });
  
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 | Routes Handled For User
-|--------------------------------------------------------------------------
-|
-|    POST   |    /users    |    update     |    users.update
+|-------------------------------------------------------------------------------
+|          |             |            |                 
+|   POST   |   /users    |   update   |   users.update
 */
 Route::controller(UserController::class)
      ->prefix('users')
@@ -41,9 +41,9 @@ Route::controller(UserController::class)
 });
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 | Routes Handled For Shop
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 |              |                              |              |
 |   GET        |   /shops/index               |    index     |    photos.index
 |   POST       |   /shops                     |    store     |    photos.store
@@ -56,14 +56,14 @@ Route::apiResource('shops', ShopController::class);
 Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->name('shops.products');
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 | Routes Handled For Product
-|--------------------------------------------------------------------------
-|               |                          |             |
-|   GET         |    /products/index       |    index    |    photos.index
-|   POST        |    /products             |    store    |    photos.store
-|   GET         |    /products/{product}   |    show     |    photos.show
-|   PUT|PATCH   |    /products/{product}   |    update   |	  photos.update
-|   DELETE      |    /products/{product}   |    destroy  |    photos.destroy
+|-------------------------------------------------------------------------------
+|              |                          |             |
+|   GET        |    /products/index       |    index    |    photos.index
+|   POST       |    /products             |    store    |    photos.store
+|   GET        |    /products/{product}   |    show     |    photos.show
+|   PUT|PATCH  |    /products/{product}   |    update   |	 photos.update
+|   DELETE     |    /products/{product}   |    destroy  |    photos.destroy
 */
 Route::apiResource('products', ProductController::class);
