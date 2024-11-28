@@ -19,8 +19,6 @@ class AuthController extends Controller
         //validation
         //————————————————————————————————————————————————————————————————————
         $valid = Validator::make($req->all(), [
-            'first_name' => 'required|string|min:2|max:50',
-            'last_name' => 'required|string|min:2|max:50',
             'phone' => 
             [
                 'required',
@@ -31,7 +29,6 @@ class AuthController extends Controller
                         return $fail("The {$attribute} has already been taken.");
                 },
             ],
-            'email' => 'email|string|unique:users,email|min:6|max:50',
             'password' => 'required|confirmed|string|min:8|max:60',
             'address' => 'required|string',
             'role' => 
@@ -47,10 +44,7 @@ class AuthController extends Controller
         //create new user
         //————————————————————————————————————————————————————————————————————
         $user = User::create([
-            'first_name' => $req->first_name,
-            'last_name' => $req->last_name,
             'phone' => $phone,
-            'email' => $req->email,
             'password' => Hash::make($req->password),
             'address' => $req->address,
             'role' => $req->role,
