@@ -8,7 +8,6 @@ class Product extends Model
 {
     protected $fillable = [];
 
-
     public function shop()
     {
         return $this->belongsTo(Shop::class);

@@ -8,10 +8,8 @@ class Shop extends Model
 {
     protected $fillable=[];
 
-
     public function products()
     {
         return $this->hasMany(Product::class);
     }
-
 }
