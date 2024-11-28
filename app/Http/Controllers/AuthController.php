@@ -9,7 +9,6 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Telegram\Bot\Laravel\Facades\Telegram;
 
 class AuthController extends Controller
 {
@@ -34,7 +33,7 @@ class AuthController extends Controller
             ],
             'email' => 'email|string|unique:users,email|min:6|max:50',
             'password' => 'required|confirmed|string|min:8|max:60',
-            'address' => 'required',
+            'address' => 'required|string',
             'role' => 
             [
                 'required',
@@ -44,14 +43,6 @@ class AuthController extends Controller
         $phone = $req->phone;
         if(strpos($phone, '+963') === 0) $phone = '0' . substr($req->phone, 4);
         if($valid->fails()) return response()->json(['errors' => $valid->errors()], 400);
-        
-        //return redirect()->away('https://t.me/sonikord_bot');
-        //return redirect()->away('https://google.com');
-        //header('Location: https://t.me/sonikord_bot');
-        //url('https://t.me/sonikord_bot');
-        
-        $telegram_user_id = Telegram::getLastResponse();
-        dd($telegram_user_id);
 
         //create new user
         //————————————————————————————————————————————————————————————————————
@@ -65,8 +56,6 @@ class AuthController extends Controller
             'role' => $req->role,
         ]);
         $token = $user->createToken('authToken')->plainTextToken;
-
-        
 
         //response
         return response()->json(['message' => 'user registered successfully',
@@ -91,9 +80,13 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|max:60',
         ]);
         if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
+
+        //format info
         $phone = $req->phone;
         $password = $req->password;
         if(strpos($phone, '+963') === 0) $phone = '0' . substr($req->phone, 4);
+
+        //check user
         if(!Auth::attempt(array('phone' => $phone, 'password' => $password))) 
             return response()->json(['message' => 'invalid phone number or password'], 401);
 

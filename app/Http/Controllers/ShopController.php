@@ -12,16 +12,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $shops=Shop::all();
-        return response()->json(['shops'=>$shops],200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $shops = Shop::all();
+        return response()->json(['shops' => $shops], 200);
     }
 
     /**
@@ -36,14 +28,6 @@ class ShopController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
     {
         //
     }
