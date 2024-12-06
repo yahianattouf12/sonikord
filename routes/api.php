@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 
@@ -29,8 +30,9 @@ Route::controller(AuthController::class)
 |-------------------------------------------------------------------------------
 | Routes Handled For User
 |-------------------------------------------------------------------------------
-|          |             |            |                 
-|   POST   |   /users    |   update   |   users.update
+|          |                            |            |                 
+|   POST   |   /users                   |   update   |   users.update
+|   GET    |   /users/{user_id}/orders  |   orders   |   users.orders
 */
 Route::controller(UserController::class)
      ->prefix('users')
@@ -38,6 +40,7 @@ Route::controller(UserController::class)
      ->middleware('auth:sanctum')
      ->group(function () {
     Route::post('/', 'update')->name('update');
+    Route::get('/{user_id}/orders', 'orders')->name('orders');
 });
 
 /*
@@ -45,11 +48,11 @@ Route::controller(UserController::class)
 | Routes Handled For Shop
 |-------------------------------------------------------------------------------
 |              |                              |              |
-|   GET        |   /shops/index               |    index     |    photos.index
-|   POST       |   /shops                     |    store     |    photos.store
-|   GET        |   /shops/{shop}              |    show      |    photos.show
-|   PUT|PATCH  |   /shops/{shop}              |    update    |	  photos.update
-|   DELETE     |   /shops/{shop}              |    destroy   |    photos.destroy
+|   GET        |   /shops/index               |    index     |    shops.index
+|   POST       |   /shops                     |    store     |    shops.store
+|   GET        |   /shops/{shop}              |    show      |    shops.show
+|   PUT|PATCH  |   /shops/{shop}              |    update    |	  shops.update
+|   DELETE     |   /shops/{shop}              |    destroy   |    shops.destroy
 |   GET        |   /shops/{shop_id}/products  |    products  |    shops.products
 */
 Route::apiResource('shops', ShopController::class);
@@ -60,10 +63,23 @@ Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->nam
 | Routes Handled For Product
 |-------------------------------------------------------------------------------
 |              |                          |             |
-|   GET        |    /products/index       |    index    |    photos.index
-|   POST       |    /products             |    store    |    photos.store
-|   GET        |    /products/{product}   |    show     |    photos.show
-|   PUT|PATCH  |    /products/{product}   |    update   |	 photos.update
-|   DELETE     |    /products/{product}   |    destroy  |    photos.destroy
+|   GET        |    /products/index       |    index    |    products.index
+|   POST       |    /products             |    store    |    products.store
+|   GET        |    /products/{product}   |    show     |    products.show
+|   PUT|PATCH  |    /products/{product}   |    update   |	 products.update
+|   DELETE     |    /products/{product}   |    destroy  |    products.destroy
 */
 Route::apiResource('products', ProductController::class);
+
+/*
+|-------------------------------------------------------------------------------
+| Routes Handled For Order
+|-------------------------------------------------------------------------------
+|              |                      |             |
+|   GET        |    /orders/index     |    index    |    orders.index
+|   POST       |    /orders           |    store    |    orders.store
+|   GET        |    /orders/{order}   |    show     |    orders.show
+|   PUT|PATCH  |    /orders/{order}   |    update   |	 orders.update
+|   DELETE     |    /orders/{order}   |    destroy  |    orders.destroy
+*/
+Route::apiResource('orders', OrderController::class);

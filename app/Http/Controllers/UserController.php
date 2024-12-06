@@ -60,4 +60,11 @@ class UserController extends Controller
                                  'user' => $user], 200);                         
     }
     //todo optional : make function to reset password ...
+
+    public function orders($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $orders = $user->orders;
+        return response()->json(['orders' => $orders], 200);
+    }
 }

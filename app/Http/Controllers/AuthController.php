@@ -65,11 +65,6 @@ class AuthController extends Controller
             'phone' => [
                 'required',
                 'regex:/^(?:\+9639\d{8}|09\d{8})$/',
-                function (string $attribute, mixed $value, Closure $fail) {
-                    if(strpos($value, '+963') === 0) $value = '0' . substr($value, 4);
-                    if(User::where('phone', $value)->first() !== null) 
-                        return $fail("The {$attribute} has already been taken.");
-                },
             ],
             'password' => 'required|string|min:8|max:60',
         ]);
