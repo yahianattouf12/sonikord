@@ -12,4 +12,9 @@ class Shop extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function scopeSearchShopByName($query,$name)
+    {
+        return $query->where('name','like','%' . $name .'%');
+    }
 }

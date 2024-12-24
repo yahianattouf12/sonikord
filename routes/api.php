@@ -11,7 +11,7 @@ use App\Http\Controllers\ProductController;
 |-------------------------------------------------------------------------------
 | Routes Handled For Authentication
 |-------------------------------------------------------------------------------
-|          |                    |               |          
+|          |                    |               |
 |   POST   |    /user/login     |    login      |    user.login
 |   POST   |    /user/register  |    register   |    user.register
 |   POST   |    /user/logout    |    logout     |    user.logout
@@ -24,12 +24,12 @@ Route::controller(AuthController::class)
     Route::post('/register', 'register')->name('register');
     Route::middleware('auth:sanctum')->post('/logout', 'logout')->name('logout');
 });
- 
+
 /*
 |-------------------------------------------------------------------------------
 | Routes Handled For User
 |-------------------------------------------------------------------------------
-|          |             |            |                 
+|          |             |            |
 |   POST   |   /users    |   update   |   users.update
 */
 Route::controller(UserController::class)
@@ -52,8 +52,10 @@ Route::controller(UserController::class)
 |   DELETE     |   /shops/{shop}              |    destroy   |    photos.destroy
 |   GET        |   /shops/{shop_id}/products  |    products  |    shops.products
 */
+Route::get('/shops/search', [ShopController::class,'search'])->name('shops.search');
 Route::apiResource('shops', ShopController::class);
 Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->name('shops.products');
+
 
 /*
 |-------------------------------------------------------------------------------
