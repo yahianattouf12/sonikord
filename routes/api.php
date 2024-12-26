@@ -71,6 +71,7 @@ Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->nam
 |   PUT|PATCH  |    /products/{product}   |    update   |	 products.update
 |   DELETE     |    /products/{product}   |    destroy  |    products.destroy
 */
+Route::get('products/search',[ProductController::class,'search'])->name('products.search');
 Route::apiResource('products', ProductController::class);
 
 /*

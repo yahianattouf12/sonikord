@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -44,5 +45,11 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $prodcuts=Product::where('shop_id',$request->shop_id)->SearchShopProducts($request->name)->get();
+        return response()->json(['products'=>$prodcuts],200);
     }
 }
