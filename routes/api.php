@@ -70,7 +70,8 @@ Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->nam
 |   PUT|PATCH  |    /products/{product}   |    update   |	 products.update
 |   DELETE     |    /products/{product}   |    destroy  |    products.destroy
 */
-Route::get('products/{shop_id}/search',[ProductController::class,'searchInsideShop'])->name('products.search');
+Route::get('products/search',[ProductController::class,'search'])->name('products.search');
+Route::get('products/{shop_id}/search',[ProductController::class,'searchInsideShop'])->name('products.searchInsideShop');
 Route::apiResource('products', ProductController::class);
 
 /*

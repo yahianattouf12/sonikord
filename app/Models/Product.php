@@ -18,7 +18,7 @@ class Product extends Model
         return $this->belongsToMany(Order::class, 'order_product');
     }
 
-    public function scopeSearchShopProducts($query,$name)
+    public function scopeSearchByName($query,$name)
     {
 
         return $query->where('name','like','%' . $name .'%');
