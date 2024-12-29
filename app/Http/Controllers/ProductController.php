@@ -47,9 +47,10 @@ class ProductController extends Controller
         //
     }
 
-    public function search(Request $request)
+    public function searchInsideShop(Request $request,$shop_id)
     {
-        $prodcuts=Product::where('shop_id',$request->shop_id)->SearchShopProducts($request->name)->get();
+        $prodcuts=Product::where('shop_id',$shop_id)->SearchShopProducts($request->name)->get();
         return response()->json(['products'=>$prodcuts],200);
     }
+
 }
