@@ -52,7 +52,13 @@ class ShopController extends Controller
     {
         $shop = Shop::findOrFail($shop_id);
         $products = $shop->products;
-        
+
         return response()->json(['products'=>$products], 200);
+    }
+
+    public function search(Request $request)
+    {
+        $shops=Shop::SearchShopByName($request->name)->get();
+        return response()->json(['shops'=>$shops], 200);
     }
 }

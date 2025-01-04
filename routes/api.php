@@ -12,10 +12,17 @@ use App\Http\Controllers\ProductController;
 |-------------------------------------------------------------------------------
 | Routes Handled For Authentication
 |-------------------------------------------------------------------------------
+<<<<<<< HEAD
 |          |                    |               |          
 |   POST   |    /auth/login     |    login      |    auth.login
 |   POST   |    /auth/register  |    register   |    auth.register
 |   POST   |    /auth/logout    |    logout     |    auth.logout
+=======
+|          |                    |               |
+|   POST   |    /user/login     |    login      |    user.login
+|   POST   |    /user/register  |    register   |    user.register
+|   POST   |    /user/logout    |    logout     |    user.logout
+>>>>>>> e6903d69bb1cce9b19f47ce010abdcd843dbc505
 */
 Route::controller(AuthController::class)
      ->prefix('auth')
@@ -25,7 +32,7 @@ Route::controller(AuthController::class)
     Route::post('/register', 'register')->name('register');
     Route::middleware('auth:sanctum')->post('/logout', 'logout')->name('logout');
 });
- 
+
 /*
 |-------------------------------------------------------------------------------
 | Routes Handled For User
@@ -55,12 +62,13 @@ Route::controller(UserController::class)
 |   DELETE     |   /shops/{shop}              |    destroy   |    shops.destroy
 |   GET        |   /shops/{shop_id}/products  |    products  |    shops.products
 */
+Route::get('/shops/search', [ShopController::class,'search'])->name('shops.search');
 Route::apiResource('shops', ShopController::class);
 Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->name('shops.products');
 
+
 /*
-|-------------------------------------------------------------------------------
-| Routes Handled For Product
+|-----------------------------------------------------------------------------
 |-------------------------------------------------------------------------------
 |              |                          |             |
 |   GET        |    /products/index       |    index    |    products.index
@@ -69,6 +77,8 @@ Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->nam
 |   PUT|PATCH  |    /products/{product}   |    update   |	 products.update
 |   DELETE     |    /products/{product}   |    destroy  |    products.destroy
 */
+Route::get('products/search',[ProductController::class,'search'])->name('products.search');
+Route::get('products/{shop_id}/search',[ProductController::class,'searchInsideShop'])->name('products.searchInsideShop');
 Route::apiResource('products', ProductController::class);
 
 /*
