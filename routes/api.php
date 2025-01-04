@@ -13,13 +13,13 @@ use App\Http\Controllers\ProductController;
 | Routes Handled For Authentication
 |-------------------------------------------------------------------------------
 |          |                    |               |          
-|   POST   |    /user/login     |    login      |    user.login
-|   POST   |    /user/register  |    register   |    user.register
-|   POST   |    /user/logout    |    logout     |    user.logout
+|   POST   |    /auth/login     |    login      |    auth.login
+|   POST   |    /auth/register  |    register   |    auth.register
+|   POST   |    /auth/logout    |    logout     |    auth.logout
 */
 Route::controller(AuthController::class)
-     ->prefix('user')
-     ->name('user.')
+     ->prefix('auth')
+     ->name('auth.')
      ->group(function () {
     Route::post('/login', 'login')->name('login');
     Route::post('/register', 'register')->name('register');
@@ -82,4 +82,18 @@ Route::apiResource('products', ProductController::class);
 |   PUT|PATCH  |    /orders/{order}   |    update   |	 orders.update
 |   DELETE     |    /orders/{order}   |    destroy  |    orders.destroy
 */
-Route::apiResource('orders', OrderController::class);
+Route::controller(OrderController::class)
+     ->prefix('orders')
+     ->name('orders.')
+     ->group(function () {
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/', 'store')->name('store');
+        Route::get('/index', 'index')->name('index');
+        Route::get('/{order}', 'show')->name('show');
+        Route::put('/{order}', 'update')->name('update');
+        Route::patch('/{order}', 'update')->name('update');
+        Route::delete('/{order}', 'destroy')->name('destroy');
+    });
+
+});

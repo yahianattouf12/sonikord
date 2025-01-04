@@ -57,6 +57,9 @@ class AuthController extends Controller
                                  'token' => $token], 201);
     }
 
+    /*
+     * phone, password
+     */
     public function login(Request $req)
     {
         //validation
