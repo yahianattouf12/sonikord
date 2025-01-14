@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
 {
-    protected $fillable=[];
+    protected $fillable=[
+        'name','city','address','image','category','phone'
+    ];
 
     public function products()
     {
