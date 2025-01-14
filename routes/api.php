@@ -12,17 +12,10 @@ use App\Http\Controllers\ProductController;
 |-------------------------------------------------------------------------------
 | Routes Handled For Authentication
 |-------------------------------------------------------------------------------
-<<<<<<< HEAD
 |          |                    |               |          
 |   POST   |    /auth/login     |    login      |    auth.login
 |   POST   |    /auth/register  |    register   |    auth.register
 |   POST   |    /auth/logout    |    logout     |    auth.logout
-=======
-|          |                    |               |
-|   POST   |    /user/login     |    login      |    user.login
-|   POST   |    /user/register  |    register   |    user.register
-|   POST   |    /user/logout    |    logout     |    user.logout
->>>>>>> e6903d69bb1cce9b19f47ce010abdcd843dbc505
 */
 Route::controller(AuthController::class)
      ->prefix('auth')
@@ -68,7 +61,8 @@ Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->nam
 
 
 /*
-|-----------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
+| Routes Handled For Product
 |-------------------------------------------------------------------------------
 |              |                          |             |
 |   GET        |    /products/index       |    index    |    products.index
