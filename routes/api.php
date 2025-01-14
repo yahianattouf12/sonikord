@@ -62,6 +62,7 @@ Route::controller(UserController::class)
 |   DELETE     |   /shops/{shop}              |    destroy   |    shops.destroy
 |   GET        |   /shops/{shop_id}/products  |    products  |    shops.products
 */
+Route::post('shops/{shop_id}',[ShopController::class,'update'])->name('shops.update'); 
 Route::get('/shops/search', [ShopController::class,'search'])->name('shops.search');
 Route::apiResource('shops', ShopController::class);
 Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->name('shops.products');
@@ -78,7 +79,7 @@ Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->nam
 |   DELETE     |    /products/{product}   |    destroy  |    products.destroy
 */
 Route::get('products/search',[ProductController::class,'search'])->name('products.search');
-Route::get('products/{shop_id}/search',[ProductController::class,'searchInsideShop'])->name('products.searchInsideShop');
+Route::get('products/search/{shop_id}',[ProductController::class,'searchInsideShop'])->name('products.searchInsideShop');
 Route::apiResource('products', ProductController::class);
 
 /*

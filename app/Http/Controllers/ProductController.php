@@ -12,7 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products=Product::all();
+        return response(["products"=>$products],200);
     }
 
     /**
@@ -28,7 +29,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product=Product::findOrFail($id);
+        return response()->json($product,200);
     }
 
     /**
@@ -44,7 +46,9 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product=Product::findOrFail($id);
+        $product->delete();
+        return response()->json(["message" =>"Deleted successfully"],204);
     }
 
     public function searchInsideShop(Request $request,$shop_id)
