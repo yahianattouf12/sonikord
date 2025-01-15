@@ -165,10 +165,33 @@ class OrderController extends Controller
         return response()->json(['message' => 'order deleted successfully'], 204);
     }
 
+    // authentication
     public function pay(Request $req, string $id)
     {
         // $user = $req->user();
         $order = $req->user()->orders->where('id', '=', $id)->first();
+        if(!isset($order)) return response()->json(['message' => 'this order is not found']);
+
+        $products=$order->products()->get()->map(function($product) {
+            return [
+                'id'             => $product->id,
+                'quantity'       => $product->quantity,
+                'name'           => $product->name,
+                'order_quantity' => $product->pivot->quantity
+            ];
+        });
+
+        foreach($products as $product)
+        {
+            if($product['order_quantity'] > $product['quantity'])
+               return response()->json(['message' => "there is not enough quantity of {$product['name']}"], 400); ;
+        }
+
+        foreach($products as $product)
+        {
+            Product::where('id', $product['id'])->decrement('quantity',$product['order_quantity']);
+        }
+        return response()->json(['message' => 'payment successful'], 201);
         
     }
 }

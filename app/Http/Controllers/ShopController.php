@@ -40,18 +40,14 @@ class ShopController extends Controller
                 $phone = $request->phone;
                 if(strpos($phone, '+963') === 0) $phone = '0' . substr($request->phone, 4);
     
-                $shop=Shop::create(
-                    [
-                        'name'=>$request->name,
-                        'city'=>$request->city,
-                        'address'=>$request->address,
-                        'category'=>$request->category,
-                        'phone'=>$phone,
-                        'image'=>$request->image
-                    ]
-                    );
-    
-    
+                $shop=Shop::create([
+                    'name'=>$request->name,
+                    'city'=>$request->city,
+                    'address'=>$request->address,
+                    'category'=>$request->category,
+                    'phone'=>$phone,
+                    'image'=>$request->image
+                ]);    
                 return response()->json(['shop' => $shop], 201);
     }
 
@@ -60,7 +56,7 @@ class ShopController extends Controller
      */
     public function show(string $id)
     {
-       $shop=Shop::findOrFail($id);
+       $shop = Shop::findOrFail($id);
 
        return response()->json(['shop' => $shop],200);
     }
@@ -70,8 +66,7 @@ class ShopController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $valid=Validator::make($request->all(),
-        [
+        $valid=Validator::make($request->all(),[
             'name'=>'required|string|min:2|max:50',
             'city'=>'required|string|min:2|max:50',
             'address'=>'required|string|min:2|max:50',
@@ -82,27 +77,23 @@ class ShopController extends Controller
             ]
             ,
             'image' =>'required|string|min:2|max:50'
-            ]);
+        ]);
 
-            if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
+        if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
 
-            $phone = $request->phone;
-            if(strpos($phone, '+963') === 0) $phone = '0' . substr($request->phone, 4);
+        $phone = $request->phone;
+        if(strpos($phone, '+963') === 0) $phone = '0' . substr($request->phone, 4);
 
-            $shop=Shop::findOrfail($id);
-            $shop->update(
-                [
-                    'name'=>$request->name,
-                    'city'=>$request->city,
-                    'address'=>$request->address,
-                    'category'=>$request->category,
-                    'phone'=>$phone,
-                    'image'=>$request->image
-                ]
-                );
-
-
-            return response()->json(['shop' => $shop], 200);
+        $shop=Shop::findOrFail($id);
+        $shop->update([
+            'name'=>$request->name,
+            'city'=>$request->city,
+            'address'=>$request->address,
+            'category'=>$request->category,
+            'phone'=>$phone,
+            'image'=>$request->image
+        ]);
+        return response()->json(['shop' => $shop], 200);
     }
 
     /**

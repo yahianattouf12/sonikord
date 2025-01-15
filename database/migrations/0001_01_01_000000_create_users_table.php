@@ -24,9 +24,9 @@ return new class extends Migration
             $table->string('password', 60);
             $table->string('image', 300)->nullable();
             $table->string('address')->nullable();
-            $table->string('role', 20)->default('client');
+            $table->string('role', 20)->default('client'); // client / admin
 
-            // $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

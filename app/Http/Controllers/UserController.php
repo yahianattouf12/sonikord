@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Closure;
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
@@ -66,5 +67,36 @@ class UserController extends Controller
         $user = User::findOrFail($user_id);
         $orders = $user->orders;
         return response()->json(['orders' => $orders], 200);
+    }
+
+    // send product id
+    // auth
+    public function addToFavorite(Request $req)
+    {
+        $valid = Validator::make($req->all(), [
+            'id' => 'required|exists:products,id',
+        ]);
+        if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
+
+        $product_id = $req->id;
+
+        $user = $req->user();
+        $user->favorite_products()->attach($product_id, []);
+        return response()->json(['message' => 'product added successfully'], 200);
+    }
+
+    public function favorites(Request $req)
+    {
+        $user = $req->user();
+        $products = $user->favorite_products;
+        return response()->json(['favorite products' => $products], 200);
+    }
+
+    public function removeFromFavorite(Request $request)
+    {
+        $product = Product::findOrFail($request->id);
+       
+       $request->user()->favorite_products()->detach($product);
+        return response()->json(['message' => 'product removed successfully'], 200);
     }
 }

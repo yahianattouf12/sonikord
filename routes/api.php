@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
@@ -30,9 +31,12 @@ Route::controller(AuthController::class)
 |-------------------------------------------------------------------------------
 | Routes Handled For User
 |-------------------------------------------------------------------------------
-|          |                            |            |                 
-|   POST   |   /users                   |   update   |   users.update
-|   GET    |   /users/{user_id}/orders  |   orders   |   users.orders
+|           |                            |                      |                 
+|   POST    |   /users                   |   update             |   users.update
+|   GET     |   /users/{user_id}/orders  |   orders             |   users.orders
+|   POST    |   /users/add-favorite      |   addToFavorite      |   users.add-favorite
+|   DELETE  |   /users/remove-favorite   |   removeFromFavorite |   users.remove-favorite
+|   GET     |   /users/favorite          |   favorites          |   users.favorites
 */
 Route::controller(UserController::class)
      ->prefix('users')
@@ -41,6 +45,9 @@ Route::controller(UserController::class)
      ->group(function () {
     Route::post('/', 'update')->name('update');
     Route::get('/{user_id}/orders', 'orders')->name('orders');
+    Route::post('/add-favorite','addToFavorite')->name('add-favorite');
+    Route::delete('/remove-favorite','removeFromFavorite')->name('remove-favorite');
+    Route::get('/favorite','favorites')->name('favorites');
 });
 
 /*
@@ -54,11 +61,11 @@ Route::controller(UserController::class)
 |   PUT|PATCH  |   /shops/{shop}              |    update    |	  shops.update
 |   DELETE     |   /shops/{shop}              |    destroy   |    shops.destroy
 |   GET        |   /shops/{shop_id}/products  |    products  |    shops.products
+|   GET        |   /shops/search              |    search    |    shops.search
 */
-Route::post('shops/{shop_id}',[ShopController::class,'update'])->name('shops.update'); 
-Route::get('/shops/search', [ShopController::class,'search'])->name('shops.search');
 Route::apiResource('shops', ShopController::class);
-Route::get('/shops/{shop_id}/products', [ShopController::class,'products'])->name('shops.products');
+Route::get('/shops/search', [ShopController::class, 'search'])->name('shops.search');
+Route::get('/shops/{shop_id}/products', [ShopController::class, 'products'])->name('shops.products');
 
 
 /*
@@ -80,12 +87,13 @@ Route::apiResource('products', ProductController::class);
 |-------------------------------------------------------------------------------
 | Routes Handled For Order
 |-------------------------------------------------------------------------------
-|              |                      |             |
-|   GET        |    /orders/index     |    index    |    orders.index
-|   POST       |    /orders           |    store    |    orders.store
-|   GET        |    /orders/{order}   |    show     |    orders.show
-|   PUT|PATCH  |    /orders/{order}   |    update   |	 orders.update
-|   DELETE     |    /orders/{order}   |    destroy  |    orders.destroy
+|              |                        |             |
+|   GET        |    /orders/index       |    index    |    orders.index
+|   POST       |    /orders             |    store    |    orders.store
+|   GET        |    /orders/{order}     |    show     |    orders.show
+|   PUT|PATCH  |    /orders/{order}     |    update   |	 orders.update
+|   DELETE     |    /orders/{order}     |    destroy  |    orders.destroy
+|   POST       |    /orders/pay/{order} |    pay      |    orders.pay
 */
 Route::controller(OrderController::class)
      ->prefix('orders')
@@ -99,6 +107,11 @@ Route::controller(OrderController::class)
         Route::put('/{order}', 'update')->name('update');
         Route::patch('/{order}', 'update')->name('update');
         Route::delete('/{order}', 'destroy')->name('destroy');
+        Route::post('/pay/{order}', 'pay')->name('pay');
     });
-
 });
+
+// Route::get('test',function()
+// {
+//     return Storage::download(asset('images.json'));
+// });
