@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $valid=Validator::make($request->all(),
+        [
+            "shop_id"=>"Integer|required|",
+            "name"=>"required|string|min:2|max:255|unique:products,name",
+            
+
+
+        ]);
+        if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
     }
 
     /**

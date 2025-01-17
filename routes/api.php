@@ -63,8 +63,9 @@ Route::controller(UserController::class)
 |   GET        |   /shops/{shop_id}/products  |    products  |    shops.products
 |   GET        |   /shops/search              |    search    |    shops.search
 */
-Route::apiResource('shops', ShopController::class);
+Route::post('shops/{shop_id}',[ShopController::class,'update'])->name('shops.update');
 Route::get('/shops/search', [ShopController::class, 'search'])->name('shops.search');
+Route::apiResource('shops', ShopController::class);
 Route::get('/shops/{shop_id}/products', [ShopController::class, 'products'])->name('shops.products');
 
 
