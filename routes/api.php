@@ -82,6 +82,7 @@ Route::get('/shops/{shop_id}/products', [ShopController::class, 'products'])->na
 */
 Route::get('products/search', [ProductController::class, 'search'])->name('products.search');
 Route::get('products/search/{shop_id}', [ProductController::class, 'searchInsideShop'])->name('products.searchInsideShop');
+Route::post('products/{product_id}', [ProductController::class, 'update'])->name('products.update');
 Route::apiResource('products', ProductController::class);
 
 /*

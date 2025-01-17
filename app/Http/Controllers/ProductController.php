@@ -27,12 +27,25 @@ class ProductController extends Controller
             'shop_id' => 'required|string|numeric',
             'name' => 'required|string|min:2|max:50',
             'price' => 'required|string|numeric',
-            ''
-
-            //Rule::unique('users', 'email')->ignore($user->id),
+            'quantity' => 'required|numeric',
+            'description' => 'string',
+            'image'=>'string'     
             //todo make validation on the photo
         ]);
+
         if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
+
+        $product=Product::create([
+            'shop_id'  =>$req->shop_id,
+            'name'     => $req->name,
+            'price'     => $req->price,
+            'quantity'  => $req->quantity,
+            'description' => $req->description,
+            'image'    => $req->image
+        ]);   
+        
+        return response()->json(['product' =>$product],201);
+
     }
 
     /**
@@ -47,9 +60,35 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $req, string $id)
     {
-        //
+
+        $valid = Validator::make($req->all(), [
+            'name' => 'required|string|min:2|max:50',
+            'price' => 'required|string|numeric',
+            'quantity' => 'required|numeric',
+            'description' => 'string',
+            'image'=>'string'     
+            //todo make validation on the photo
+        ]);
+
+        if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
+
+
+        $product=Product::findOrFail($id);
+        
+        $product->update(
+            [
+                'name'     => $req->name,
+                'price'     => $req->price,
+                'quantity'  => $req->quantity,
+                'description' => $req->description,
+                'image'    => $req->image
+            ]
+            );
+
+            return response()->json(['product'=>$product],200);
+        
     }
 
     /**
