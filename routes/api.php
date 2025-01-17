@@ -116,3 +116,7 @@ Route::controller(OrderController::class)
 // {
 //     return Storage::download(asset('images.json'));
 // });
+
+// php artisan db:seed --class=UserSeeder
+// php artisan db:seed
+// php artisan make:factory UserFactory
