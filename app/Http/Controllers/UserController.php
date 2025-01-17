@@ -19,12 +19,12 @@ class UserController extends Controller
 
         //validation
         //———————————————————————————————————————————————
-        $valid = Validator::make($req->all(),[
+        $valid = Validator::make($req->all(), [
             'first_name' => 'string|min:2|max:50',
             'last_name' => 'string|min:2|max:50',
             'address' => 'string|min:2|max:50',
             'email' => [
-                'email|min:6|max:50|string',
+                'email', 'min:6', 'max:50', 'string',
                 Rule::unique('users', 'email')->ignore($user->id),
             ],
             'phone' => [
@@ -61,13 +61,6 @@ class UserController extends Controller
                                  'user' => $user], 200);                         
     }
     //todo optional : make function to reset password ...
-
-    public function orders($user_id)
-    {
-        $user = User::findOrFail($user_id);
-        $orders = $user->orders;
-        return response()->json(['orders' => $orders], 200);
-    }
 
     // send product id
     // auth

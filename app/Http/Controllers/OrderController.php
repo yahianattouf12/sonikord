@@ -168,7 +168,6 @@ class OrderController extends Controller
     // authentication
     public function pay(Request $req, string $id)
     {
-        // $user = $req->user();
         $order = $req->user()->orders->where('id', '=', $id)->first();
         if(!isset($order)) return response()->json(['message' => 'this order is not found']);
 
@@ -191,6 +190,8 @@ class OrderController extends Controller
         {
             Product::where('id', $product['id'])->decrement('quantity',$product['order_quantity']);
         }
+        $order->status = 'paid';
+        $order->save();
         return response()->json(['message' => 'payment successful'], 201);
         
     }

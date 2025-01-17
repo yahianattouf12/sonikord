@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\admin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\AuthController;
@@ -32,22 +33,21 @@ Route::controller(AuthController::class)
 | Routes Handled For User
 |-------------------------------------------------------------------------------
 |           |                            |                      |                 
-|   POST    |   /users                   |   update             |   users.update
-|   GET     |   /users/{user_id}/orders  |   orders             |   users.orders
+|   POST    |   /users/update            |   update             |   users.update
 |   POST    |   /users/add-favorite      |   addToFavorite      |   users.add-favorite
 |   DELETE  |   /users/remove-favorite   |   removeFromFavorite |   users.remove-favorite
-|   GET     |   /users/favorite          |   favorites          |   users.favorites
+|   GET     |   /users/favorites         |   favorites          |   users.favorites
 */
 Route::controller(UserController::class)
      ->prefix('users')
      ->name('users.')
      ->middleware('auth:sanctum')
      ->group(function () {
-    Route::post('/', 'update')->name('update');
-    Route::get('/{user_id}/orders', 'orders')->name('orders');
+    Route::post('/update', 'update')->name('update');
+    // Route::get('/{user_id}/orders', 'orders')->name('orders');
     Route::post('/add-favorite','addToFavorite')->name('add-favorite');
     Route::delete('/remove-favorite','removeFromFavorite')->name('remove-favorite');
-    Route::get('/favorite','favorites')->name('favorites');
+    Route::get('/favorites','favorites')->name('favorites');
 });
 
 /*
@@ -79,8 +79,8 @@ Route::get('/shops/{shop_id}/products', [ShopController::class, 'products'])->na
 |   PUT|PATCH  |    /products/{product}   |    update   |	 products.update
 |   DELETE     |    /products/{product}   |    destroy  |    products.destroy
 */
-Route::get('products/search',[ProductController::class,'search'])->name('products.search');
-Route::get('products/search/{shop_id}',[ProductController::class,'searchInsideShop'])->name('products.searchInsideShop');
+Route::get('products/search', [ProductController::class, 'search'])->name('products.search');
+Route::get('products/search/{shop_id}', [ProductController::class, 'searchInsideShop'])->name('products.searchInsideShop');
 Route::apiResource('products', ProductController::class);
 
 /*

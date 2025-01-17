@@ -22,33 +22,31 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-            $valid=Validator::make($request->all(),
-            [
-                'name'=>'required|string|min:2|max:50',
-                'city'=>'required|string|min:2|max:50',
-                'address'=>'required|string|min:2|max:50',
-                'category'=>'string|min:2|max:50',
-                'phone' => [
-                    'regex:/^(?:\+9639\d{8}|09\d{8})$/',
-                ]
-                ,
-                'image' =>'required|string|min:2|max:50'
-                ]);
-    
-                if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
-    
-                $phone = $request->phone;
-                if(strpos($phone, '+963') === 0) $phone = '0' . substr($request->phone, 4);
-    
-                $shop=Shop::create([
-                    'name'=>$request->name,
-                    'city'=>$request->city,
-                    'address'=>$request->address,
-                    'category'=>$request->category,
-                    'phone'=>$phone,
-                    'image'=>$request->image
-                ]);    
-                return response()->json(['shop' => $shop], 201);
+        $valid = Validator::make($request->all(), [
+            'name' => 'required|string|min:2|max:50',
+            'city' => 'required|string|min:2|max:50',
+            'address' => 'required|string|min:2|max:50',
+            'category' => 'string|min:2|max:50',
+            'phone' => [
+                'regex:/^(?:\+9639\d{8}|09\d{8})$/',
+            ],
+            'image' => 'required|string|min:2|max:50'
+        ]);
+
+        if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
+
+        $phone = $request->phone;
+        if(strpos($phone, '+963') === 0) $phone = '0' . substr($request->phone, 4);
+
+        $shop=Shop::create([
+            'name'     => $request->name,
+            'city'     => $request->city,
+            'address'  => $request->address,
+            'category' => $request->category,
+            'phone'    => $phone,
+            'image'    => $request->image
+        ]);    
+        return response()->json(['shop' => $shop], 201);
     }
 
     /**
@@ -58,7 +56,7 @@ class ShopController extends Controller
     {
        $shop = Shop::findOrFail($id);
 
-       return response()->json(['shop' => $shop],200);
+       return response()->json(['shop' => $shop], 200);
     }
 
     /**
@@ -101,7 +99,7 @@ class ShopController extends Controller
      */
     public function destroy(string $id)
     {
-        $shop=Shop::findOrFail($id);
+        $shop = Shop::findOrFail($id);
         $shop->delete();
         return response()->json(["message" =>"Deleted successfully"],204);
     }

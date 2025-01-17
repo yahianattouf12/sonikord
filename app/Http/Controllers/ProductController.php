@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -12,16 +13,26 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
+        $products = Product::all();
         return response(["products"=>$products],200);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        // shop , name , price , quantity , description , image 
+        $valid = Validator::make($req->all(), [
+            'shop_id' => 'required|string|numeric',
+            'name' => 'required|string|min:2|max:50',
+            'price' => 'required|string|numeric',
+            ''
+
+            //Rule::unique('users', 'email')->ignore($user->id),
+            //todo make validation on the photo
+        ]);
+        if($valid->fails()) return response()->json(['errors' => $valid->errors()]);
     }
 
     /**
