@@ -14,6 +14,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        $products->map(function ($product){
+            $product->image=$product->image;
+        });
         return response(["products"=>$products],200);
     }
 
