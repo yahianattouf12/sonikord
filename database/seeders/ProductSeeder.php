@@ -17,113 +17,271 @@ class ProductSeeder extends Seeder
         //1
         Product::create(
             [
-                'shop_id'  =>'1',
+                'shop_id'  => '1',
                 'name'     => 'Bentley',
                 'price'     => '5000',
                 'quantity'  => '3',
-                'description' =>'A luxurious car with sleek design, premium leather interior
+                'description' => 'A luxurious car with sleek design, premium leather interior
                 , advanced technology,
                  powerful engine, smooth performance, and unparalleled comfort.',
-                'image'    =>'images/cars/bently.jpg' ,
+                'image'    => 'images/cars/bently.jpg',
             ]
-            );
+        );
 
         //2
         Product::create(
             [
-                'shop_id'  =>'1',
+                'shop_id'  => '1',
                 'name'     => 'BMW',
                 'price'     => '3000',
                 'quantity'  => '2',
-                'description' =>'A luxurious car with sleek design, premium leather interior
+                'description' => 'A luxurious car with sleek design, premium leather interior
                 , advanced technology,
                  powerful engine, smooth performance, and unparalleled comfort.',
-                'image'    =>'images/cars/bmw.jpg' ,
+                'image'    => 'images/cars/bmw.jpg',
             ]
-            );
-       //3
-       Product::create(
-        [
-            'shop_id'  =>'1',
-            'name'     => 'Bugatti',
-            'price'     => '7000',
-            'quantity'  => '6',
-            'description' =>'A luxurious car with sleek design, premium leather interior
+        );
+        //3
+        Product::create(
+            [
+                'shop_id'  => '1',
+                'name'     => 'Bugatti',
+                'price'     => '7000',
+                'quantity'  => '6',
+                'description' => 'A luxurious car with sleek design, premium leather interior
             , advanced technology,
              powerful engine, smooth performance, and unparalleled comfort.',
-            'image'    =>'images/cars/bugatti.jpg' ,
-        ]
+                'image'    => 'images/cars/bugatti.jpg',
+            ]
+        );
+        //4
+        Product::create(
+            [
+                'shop_id'  => '1',
+                'name'     => 'Toyota',
+                'price'     => '3000',
+                'quantity'  => '5',
+                'description' => 'A luxurious car with sleek design, premium leather interior
+                , advanced technology,
+                 powerful engine, smooth performance, and unparalleled comfort.',
+                'image'    => 'images/cars/toyota.jpg',
+            ]
+        );
+        //5
+        Product::create(
+            [
+                'shop_id'  => '1',
+                'name'     => 'Mercedes',
+                'price'     => '5500',
+                'quantity'  => '6',
+                'description' => 'A luxurious car with sleek design, premium leather interior
+                    , advanced technology,
+                     powerful engine, smooth performance, and unparalleled comfort.',
+                'image'    => 'images/cars/mercedes.jpg',
+            ]
+        );
+        //6
+        Product::create(
+            [
+                'shop_id'  => '1',
+                'name'     => 'Ford',
+                'price'     => '2000',
+                'quantity'  => '3',
+                'description' => 'A luxurious car with sleek design, premium leather interior
+                        , advanced technology,
+                         powerful engine, smooth performance, and unparalleled comfort.',
+                'image'    => 'images/cars/ford.jpg',
+            ]
+        );
+        //7
+        Product::create(
+            [
+                'shop_id'  => '1',
+                'name'     => 'BMW x6',
+                'price'     => '5000',
+                'quantity'  => '12',
+                'description' => 'A luxurious car with sleek design, premium leather interior
+                            , advanced technology,
+                             powerful engine, smooth performance, and unparalleled comfort.',
+                'image'    => 'images/cars/bwm2.jpg',
+            ]
+        );
+
+        //zara
+        //1
+        Product::create(
+            [
+                'shop_id'  => '2',
+                'name'     => 'T_shirt',
+                'price'     => '500',
+                'quantity'  => '50',
+                'description' => 'Stylish clothes featuring premium fabrics,
+                 modern designs, vibrant colours, 
+                 comfortable fits, intricate details, and a perfect blend of elegance.',
+                'image'    => 'images/zara/T_shirt.jpg',
+            ]
+        );
+        //2
+        Product::create(
+            [
+                'shop_id'  => '2',
+                'name'     => 'zara jeans',
+                'price'     => '900',
+                'quantity'  => '14',
+                'description' => 'Stylish clothes featuring premium fabrics,
+                 modern designs, vibrant colours, 
+                 comfortable fits, intricate details, and a perfect blend of elegance.',
+                'image'    => 'images/zara/zara jeans.jpg',
+            ]
+        );
+        //3
+        Product::create(
+            [
+                'shop_id'  => '2',
+                'name'     => 'jeans pants',
+                'price'     => '800',
+                'quantity'  => '20',
+                'description' => 'Stylish clothes featuring premium fabrics,
+                 modern designs, vibrant colours, 
+                 comfortable fits, intricate details, and a perfect blend of elegance.',
+                'image'    => 'images/zara/jeans pants.jpg',
+            ]
         );
        //4
         Product::create(
             [
-                'shop_id'  =>'1',
-                'name'     => 'Toyota',
-                'price'     => '3000',
-                'quantity'  => '5',
-                'description' =>'A luxurious car with sleek design, premium leather interior
-                , advanced technology,
-                 powerful engine, smooth performance, and unparalleled comfort.',
-                'image'    =>'images/cars/toyota.jpg' ,
+                'shop_id'  => '2',
+                'name'     => 'jeans_jacket',
+                'price'     => '50',
+                'quantity'  => '11',
+                'description' => 'Stylish clothes featuring premium fabrics,
+                 modern designs, vibrant colours, 
+                 comfortable fits, intricate details, and a perfect blend of elegance.',
+                'image'    => 'images/zara/jeans_jacket.jpg',
             ]
-            );
-       //5
-            Product::create(
-                [
-                    'shop_id'  =>'1',
-                    'name'     => 'Mercedes',
-                    'price'     => '5500',
-                    'quantity'  => '6',
-                    'description' =>'A luxurious car with sleek design, premium leather interior
-                    , advanced technology,
-                     powerful engine, smooth performance, and unparalleled comfort.',
-                    'image'    =>'images/cars/mercedes.jpg' ,
-                ]
-                );
+        );
+        //5
+        Product::create(
+            [
+                'shop_id'  => '2',
+                'name'     => 'jakect',
+                'price'     => '200',
+                'quantity'  => '14',
+                'description' => 'Stylish clothes featuring premium fabrics,
+                 modern designs, vibrant colours, 
+                 comfortable fits, intricate details, and a perfect blend of elegance.',
+                'image'    => 'images/zara/jakect.jpg',
+            ]
+        );
         //6
-                Product::create(
-                    [
-                        'shop_id'  =>'1',
-                        'name'     => 'Ford',
-                        'price'     => '2000',
-                        'quantity'  => '3',
-                        'description' =>'A luxurious car with sleek design, premium leather interior
-                        , advanced technology,
-                         powerful engine, smooth performance, and unparalleled comfort.',
-                        'image'    =>'images/cars/ford.jpg' ,
-                    ]
-                    );
-        //7
-                    Product::create(
-                        [
-                            'shop_id'  =>'1',
-                            'name'     => 'BMW x6',
-                            'price'     => '5000',
-                            'quantity'  => '12',
-                            'description' =>'A luxurious car with sleek design, premium leather interior
-                            , advanced technology,
-                             powerful engine, smooth performance, and unparalleled comfort.',
-                            'image'    =>'images/cars/bwm2.jpg' ,
-                        ]
-                        );
-                        
-                        
+        Product::create(
+            [
+                'shop_id'  => '2',
+                'name'     => 'black_suit',
+                'price'     => '1000',
+                'quantity'  => '7',
+                'description' => 'Stylish clothes featuring premium fabrics,
+                 modern designs, vibrant colours, 
+                 comfortable fits, intricate details, and a perfect blend of elegance.',
+                'image'    => 'images/zara/black_suit.jpg',
+            ]
+        ); 
 
 
+       //H&M
+       //1  
+       Product::create(
+        [
+            'shop_id'  => '3',
+            'name'     => 'white_shrit',
+            'price'     => '1000',
+            'quantity'  => '7',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/H&M/white_shrit.jpg',
+        ]
+    );
+    //2
+    Product::create(
+        [
+            'shop_id'  => '3',
+            'name'     => 'while_T_shirt',
+            'price'     => '1000',
+            'quantity'  => '7',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/H&M/while_T_shirt.jpg',
+        ]
+    ); 
+    //3
+    Product::create(
+        [
+            'shop_id'  => '3',
+            'name'     => 'suit',
+            'price'     => '1000',
+            'quantity'  => '7',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/H&M/suit.jpg',
+        ]
+    ); 
+    //4
+    Product::create(
+        [
+            'shop_id'  => '3',
+            'name'     => 'socks',
+            'price'     => '1000',
+            'quantity'  => '7',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/H&M/socks.jpg',
+        ]
+    ); 
+    //5
+    Product::create(
+        [
+            'shop_id'  => '3',
+            'name'     => 'black_T_shirt',
+            'price'     => '1000',
+            'quantity'  => '7',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/H&M/black_suit.jpg',
+        ]
+    ); 
+    //6
+    Product::create(
+        [
+            'shop_id'  => '3',
+            'name'     => 'black_jacket',
+            'price'     => '1000',
+            'quantity'  => '7',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/H&M/black_jacket.jpg',
+        ]
+    );
+    //7
+          Product::create(
+            [
+                'shop_id'  => '3',
+                'name'     => 'syrian_shirts',
+                'price'     => '1000',
+                'quantity'  => '7',
+                'description' => 'Stylish clothes featuring premium fabrics,
+                 modern designs, vibrant colours, 
+                 comfortable fits, intricate details, and a perfect blend of elegance.',
+                'image'    => 'images/H&M/syrian_shirts.jpg',
+            ]
+        );
 
-
-
-
-
-
-
-
-
-
-
-
-                        
-                        
+                      
           //pizza resturant  
           //1
           Product::create(
@@ -362,6 +520,75 @@ class ProductSeeder extends Seeder
             'image'    => 'images/koko/olive_salad.jpg',
         ]  
     );
+
+    //Adidas
+    //1
+    Product::create(
+        [
+            'shop_id'  => '7',
+            'name'     => 'white shoes',
+            'price'     => '300',
+            'quantity'  => '54',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/adidas/adidas1.jpg',
+        ]
+    );
+    //2
+    Product::create(
+        [
+            'shop_id'  => '7',
+            'name'     => 'sport shoes',
+            'price'     => '300',
+            'quantity'  => '34',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/adidas/adidas2.jpg',
+        ]
+    );
+    //3
+    Product::create(
+        [
+            'shop_id'  => '7',
+            'name'     => 'black shoes',
+            'price'     => '200',
+            'quantity'  => '23',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/adidas/adidas3.jpg',
+        ]
+    );
+    //4
+    Product::create(
+        [
+            'shop_id'  => '7',
+            'name'     => 'blue shoes',
+            'price'     => '400',
+            'quantity'  => '23',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/adidas/adidas4.jpg',
+        ]
+    );
+    //5
+    Product::create(
+        [
+            'shop_id'  => '7',
+            'name'     => 'red shoes',
+            'price'     => '100',
+            'quantity'  => '6',
+            'description' => 'Stylish clothes featuring premium fabrics,
+             modern designs, vibrant colours, 
+             comfortable fits, intricate details, and a perfect blend of elegance.',
+            'image'    => 'images/adidas/red_adidas.jpg',
+        ]
+    );
+
+
 
 
 

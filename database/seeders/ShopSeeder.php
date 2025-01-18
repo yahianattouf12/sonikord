@@ -77,6 +77,17 @@ class ShopSeeder extends Seeder
             'image'=>'images/shops/resturant2.jpg'
 
         ]); 
+
+        //7       
+        Shop::create([
+            'name' => 'Adidas',
+            'city'=>'Hama',
+            'address'=>'main street',
+            'category'=>'sports',
+            'phone'=>'0948844456',
+            'image'=>'images/shops/adidas.jpg'
+
+        ]); 
     
     }
 
