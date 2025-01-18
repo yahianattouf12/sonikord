@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
+    public function show(Request $req)
+    {
+        return $req->user();
+    }
+
     // update user info ...
 
     public function update(Request $req)

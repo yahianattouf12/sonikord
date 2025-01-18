@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public $check = '12345';
+    // public $check = '12345';
+    
     // register, login and logout ...
 
     public function register(Request $req)
@@ -42,9 +43,9 @@ class AuthController extends Controller
         if(strpos($phone, '+963') === 0) $phone = '0' . substr($req->phone, 4);
         if($valid->fails()) return response()->json(['errors' => $valid->errors()], 400);
 
-        //check if user exists
-        if($this->check != $req->check)
-            return response()->json(['massage' => 'The check code is invalid.'], 401);
+        // //check if user exists
+        // if($this->check != $req->check)
+        //     return response()->json(['massage' => 'The check code is invalid.'], 401);
         
         //create new user
         //————————————————————————————————————————————————————————————————————

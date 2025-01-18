@@ -43,6 +43,7 @@ Route::controller(UserController::class)
      ->name('users.')
      ->middleware('auth:sanctum')
      ->group(function () {
+    Route::get('/show', 'show')->name('show');
     Route::post('/update', 'update')->name('update');
     // Route::get('/{user_id}/orders', 'orders')->name('orders');
     Route::post('/add-favorite','addToFavorite')->name('add-favorite');
